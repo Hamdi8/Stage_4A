@@ -1,0 +1,36 @@
+<title>Create New Product</title>
+</head>
+<body>
+    <div align="center">
+        <h1>Modifier un produit</h1>
+        <br />
+        <form action="#" th:action="@{/save}" th:object="${product}"
+            method="post">
+ 
+            <table border="0" cellpadding="10">
+                <tr>
+                    <td>ID de produit:</td>
+                    <td><input type="text" th:field="*{id}" readonly="readonly" /></td>
+                </tr>
+                            
+                <tr>
+                    <td>Nom de produit:</td>
+                    <td><input type="text" th:field="*{nom}" /></td>
+                </tr>
+                <tr>
+                    <td>Prix:</td>
+                    <td><input type="text" th:field="*{prix}" /></td>
+                </tr>
+                <tr>
+                    <td>Prix d'achat:</td>
+                    <td><input type="text" th:field="*{prixAchat}" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button type="submit">Save</button> </td>
+                </tr>
+
+            </table>
+        </form>
+    </div>
+</body>
+</html>
