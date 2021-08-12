@@ -1,6 +1,9 @@
 // copyright www.codejava.net
 package net.codejava;
  
+import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
@@ -25,9 +28,11 @@ import lombok.ToString;
 @ToString
 */
 @Entity 
- @Table (name= "product" )
+ @Table (name= "Product" )
 //@EntityListeners(AuditingEntityListener.class)
-public class Product {
+public class Product  implements Serializable {
+	
+	private static final long SerialVersionUID = 1L; 
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -56,7 +61,7 @@ public class Product {
     public int getId() {
         return id;
     }
-
+    @Column(name = "Nom", nullable = false)
 	public String getNom() {
 		return nom;
 	}
@@ -65,6 +70,7 @@ public class Product {
 		this.nom = nom;
 	}
 
+	 @Column(name = "Prix", nullable = false)
 	public int getPrix() {
 		return prix;
 	}
@@ -73,6 +79,7 @@ public class Product {
 		this.prix = prix;
 	}
 
+	@Column(name = "PrixAchat", nullable = false)
 	public int getPrixAchat() {
 		return prixAchat;
 	}

@@ -25,12 +25,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.NoSuchElementException;
- 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @RestController
 //@Service
 //@Transactional
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/v1")
+
+
+
 public class AppController {
  
   //  @Autowired
@@ -44,9 +50,53 @@ public class AppController {
 	        return "index"  ; 
 	        } 
 	        */
+	Logger log = LoggerFactory.getLogger(AppController.class);
+	
+	@Autowired ProductConverter converter;
     @Autowired
     private ProductService service; 
     
+    @GetMapping("/product")
+    public List<Product> getProductsList() {
+    	log.debug("afficher la liste des produits ") ; 
+        return service.listAll();
+        
+    }
+	
+	@GetMapping("/findAll")
+	public List<ProductDto> findAll() {
+		List<Product> findAll = service.listAll();
+		log.debug("afficher la liste des produits ") ; 
+		return converter.entityToDto(findAll);
+	}
+	
+	@GetMapping("/find/{ID}")
+	public ProductDto findById(@PathVariable(value = "ID") int id) {
+		Product orElse = service.get(id);
+		log.debug("afficher le produit qui a le ID : {}  ", id);
+		return converter.entityToDto(orElse);
+		
+	}
+	
+	@PostMapping("/save")
+	public ProductDto save(@RequestBody ProductDto dto) {
+		
+		Product product = converter.dtoToEntity(dto);
+		service.save(product);
+		log.debug(" ajouter un nouveau produit ") ;
+		return converter.entityToDto(product);
+	}
+	
+}
+    
+    
+    
+    
+    
+    
+    
+    
+    /*
     @GetMapping("/product")
     public List<Product> getProductsList() {
         return service.listAll();
@@ -84,5 +134,5 @@ public class AppController {
         service.delete(id);
     }
     }
-    
+    */
     
