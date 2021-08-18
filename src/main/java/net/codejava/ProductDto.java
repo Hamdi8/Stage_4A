@@ -5,7 +5,7 @@ import lombok.Setter;
 @Data
 public class ProductDto {
 
-    private int id;
+    private Long id;
 	
     private String nom;
 	
@@ -13,7 +13,7 @@ public class ProductDto {
 	
     private int prixAchat;
     
-    public int getId() {
+    public Long getId() {
         return id;
     }
     public String getNom() {
@@ -27,7 +27,7 @@ public class ProductDto {
     public int getPrixAchat() {
 		return prixAchat;
 	}
-    public void setId(int id) {
+    public void setId(Long id )  {
 		this.id = id;
 	}
     

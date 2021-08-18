@@ -5,41 +5,38 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-/*
-import org.springframework.stereotype.Repository;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
-*/
-/*
-@Repository
+
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-*/
-@Entity 
+@Builder
+@Entity
+
  @Table (name= "Product" )
 //@EntityListeners(AuditingEntityListener.class)
 public class Product  implements Serializable {
 	
 	private static final long SerialVersionUID = 1L; 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nom;
     private int prix;
     private int prixAchat;
  
+   
     public Product(String nom, int prix, int prixAchat) {
 		super();
 		this.nom = nom;
@@ -47,18 +44,9 @@ public class Product  implements Serializable {
 		this.prixAchat = prixAchat;
 	}
 
-	protected Product() {
-    }
-  
-    public Product(int id, String nom, int prix, int prixAchat) {
-		super();
-		this.id = id;
-		this.nom = nom;
-		this.prix = prix;
-		this.prixAchat = prixAchat;
-	}
+
 	
-    public int getId() {
+    public Long getId() {
         return id;
     }
     @Column(name = "Nom", nullable = false)
@@ -93,9 +81,10 @@ public class Product  implements Serializable {
 		return "Product [id=" + id + ", nom=" + nom + ", prix=" + prix + ", prixAchat=" + prixAchat + "]";
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
-     
+
+
     // other getters and setters are hidden for brevity
 }

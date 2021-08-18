@@ -17,15 +17,15 @@ public class ProductService {
         return repo.findAll();
     }
      
-    public void save(Product product) {
+    public void  save(Product product) {
         repo.save(product);
     }
      
-    public Product get(int id) {
+    public Product get(long id) {
         return repo.findById(id).get();
     }
      
-    public void delete(int id) {
+    public void delete(long id) {
         repo.deleteById(id);
     }
 }
