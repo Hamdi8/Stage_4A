@@ -135,6 +135,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>ProductManager</finalName>
 	</build>
 
 </project>
