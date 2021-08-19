@@ -1,4 +1,4 @@
-FROM openjdk:8
-EXPOSE 8080
+FROM openjdk:8u111-jdk-alpine
+VOLUME /tmp
 ADD target/ProductManager.jar ProductManager.jar 
-ENTRYPOINT ["java","-jar","/ProductManager.jar"]
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
